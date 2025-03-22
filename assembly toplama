@@ -1,0 +1,33 @@
+;0000 adresinden baþlayýp asagi istediginiz
+;sayilari girin, C registerini dogru ayarlayin
+;sonuc , 1000 adresine hex kodunda 
+;birler ve onlar basamagi yazilir
+;1001 adresine hex kodunda yuzler ve binler 
+;basamagi yazilir
+;sonuc en fazla 65535 olabilir
+lxi h 0000
+mvi a,00
+sta 1000
+sta 1001
+mvi c,09 ;09 sayisini istediginiz bir sayi yapip
+;ne kadar toplama yapmasini ayarlayabilirsiniz
+loop:
+add m
+inx h
+sta 1000
+dcr c
+jz son
+jc ekle
+jmp loop
+
+ekle:
+mvi b,1
+lda 1001
+add b
+sta 1001
+lda 1000
+jmp loop
+
+son:
+hlt
+;Orisoy
